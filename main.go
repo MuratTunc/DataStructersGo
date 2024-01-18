@@ -2,6 +2,17 @@ package main
 
 import "fmt"
 
+
+// LinearSearch function
+func linearsearch(a []int, key int) bool {
+	for _, item := range a {
+		if item == key {
+			return true
+		}
+	}
+	return false
+} 
+
 // BinarySearch function
 func BinarySearch(a []int, x int) int {
     result := -1 // not found
@@ -55,5 +66,7 @@ func main() {
 
     bubbleSort(array)
 	fmt.Println("The sorted array is:", array)
+
+    fmt.Println(linearsearch(array,99))
     
 }
