@@ -53,20 +53,54 @@ func bubbleSort(arr []int) {
 		n-- // The largest element is now in its correct position, 
             // so reduce the length of the unsorted part of the array
 		
-		fmt.Println("Sorted array:", arr)
+
 		m++
 	}
+}
+
+// Function to search x in the given array
+func SentinelSearch(arr []int, key int) int {
+    result := -1 // not found
+	n:=len(arr) //array size
+    last := arr[n - 1] // Last element of the array
+    arr[n - 1] = key // Element to be searched is placed at the last index
+    i := 0
+ 
+    for arr[i] != key {
+		i++
+	}
+
+    arr[n - 1] = last // Put the last element back
+ 
+    if i < (n - 1) || arr[n - 1] == key {
+		return i
+	} else {
+		fmt.Println("Element Not found")
+	}
+	
+	return result
 }
 
 func main() {
 
     array := []int{10,9,7,2,11,3,65,89,99}
     search_value:=11
+
+	fmt.Println("array:",array)
+	fmt.Println("search_value:",search_value)
+	fmt.Println("*******************************")
+	fmt.Println("BinarySearch Result:")
     fmt.Println(BinarySearch(array,search_value))
 
+	fmt.Println("SentinelSearch Result:")
+	fmt.Println(SentinelSearch(array,search_value))
+    
+	fmt.Println("bubbleSort Result:")
     bubbleSort(array)
 	fmt.Println("The sorted array is:", array)
 
     fmt.Println(linearsearch(array,99))
+
+
     
 }
