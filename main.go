@@ -6,34 +6,38 @@ import (
 )
 
 // LinearSearch function
-func Linearsearch(a []int, key int) bool {
-	for _, item := range a {
-		if item == key {
-			return true
+func Linearsearch(array []int, key int) int {
+
+	var index int
+	var size = len(array)
+	for index = 0; index < size; index++ {
+		if array[index] == key {
+			return index //Success case (key is found)
 		}
 	}
-	return false
+
+	return -1 //Fail case (key is not found)
 }
 
 // BinarySearch function
-func BinarySearch(a []int, x int) int {
-	result := -1 // not found
-	start := 0
-	end := len(a) - 1
+func BinarySearch(a []int, key int) int {
+	result := -1      // Initialize result not found
+	start := 0        // Start position
+	end := len(a) - 1 // End index
 
 	for start <= end {
-		mid := (start + end) / 2
-		if a[mid] == x {
-			result = mid // found
+		mid_point := (start + end) / 2
+		if a[mid_point] == key {
+			result = mid_point // Success case (key is found)
 			break
-		} else if a[mid] < x {
-			start = mid + 1
-		} else if a[mid] > x {
-			end = mid - 1
+		} else if a[mid_point] < key {
+			start = mid_point + 1
+		} else if a[mid_point] > key {
+			end = mid_point - 1
 		}
 	}
 
-	return result
+	return result //Fail case (key is not found)
 }
 
 // InterpolationSearch
@@ -152,7 +156,7 @@ func main() {
 
 	fmt.Println("*******************************")
 	fmt.Println("BinarySearch Result:")
-	fmt.Println(BinarySearch(array, search_value))
+	fmt.Println(BinarySearch(array, 13))
 
 	fmt.Println("*******************************")
 	fmt.Println("SentinelSearch Result:")
