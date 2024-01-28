@@ -9,7 +9,7 @@ import (
 func Linearsearch(array []int, key int) int {
 
 	var index int
-	var size = len(array)
+	var size = len(array) // Finding array size
 	for index = 0; index < size; index++ {
 		if array[index] == key {
 			return index //Success case (key is found)
@@ -20,19 +20,19 @@ func Linearsearch(array []int, key int) int {
 }
 
 // BinarySearch function
-func BinarySearch(a []int, key int) int {
-	result := -1      // Initialize result not found
-	start := 0        // Start position
-	end := len(a) - 1 // End index
+func BinarySearch(array []int, key int) int {
+	result := -1          // Initialize result not found
+	start := 0            // Start position
+	end := len(array) - 1 // End index
 
 	for start <= end {
 		mid_point := (start + end) / 2
-		if a[mid_point] == key {
+		if array[mid_point] == key {
 			result = mid_point // Success case (key is found)
 			break
-		} else if a[mid_point] < key {
+		} else if array[mid_point] < key {
 			start = mid_point + 1
-		} else if a[mid_point] > key {
+		} else if array[mid_point] > key {
 			end = mid_point - 1
 		}
 	}
@@ -87,61 +87,55 @@ func InterpolationSearch(array []int, key int) int {
 }
 
 // Function to search x in the given array
-func SentinelSearch(arr []int, key int) int {
-	result := -1     // not found
-	n := len(arr)    //array size
-	last := arr[n-1] // Last element of the array
-	arr[n-1] = key   // Element to be searched is placed at the last index
+func SentinelSearch(array []int, key int) int {
+	result := -1       // Initialize result not found
+	n := len(array)    // Finding array size
+	last := array[n-1] // Last element of the array
+	array[n-1] = key   // Element to be searched is placed at the last index
 	i := 0
 
-	for arr[i] != key {
+	for array[i] != key {
 		i++
 	}
 
-	arr[n-1] = last // Put the last element back
+	array[n-1] = last // Put the last element back
 
-	if i < (n-1) || arr[n-1] == key {
-		return i
-	} else {
-		fmt.Println("Element Not found")
+	if i < (n-1) || array[n-1] == key {
+		return i // Success case (key is found)
 	}
 
-	return result
+	return result // Fail case (key is not found)
 }
 
-func JumpBinarySearch(arr []int, key int) int {
+func JumpBinarySearch(array []int, key int) int {
 
-	step := int(math.Round(math.Sqrt(float64(len(arr)))))
-	n := len(arr)
-	// Finding the block where element is present (if it is present)
-	var prev int = 0
-	for arr[min(step, n)-1] < key {
+	var n float64 = float64(len(array)) // Finding array size
+	var step float64 = math.Sqrt((n))   // Finding the block size
+	var prev float64 = 0
+
+	for array[int(math.Min(step, n)-1)] < key {
 		prev = step
-		step += int(math.Round(math.Sqrt(float64(n))))
+		step += math.Sqrt((n))
 		if prev >= n {
 			return -1
 		}
 
 	}
-
-	// Doing a linear search for x in block
-	// beginning with prev.
-	for arr[prev] < key {
+	// Linear search for x in block
+	for array[int(prev)] < key {
 		prev++
 		// If we reached next block or end of
 		// array, element is not present.
-		if prev == min(step, key) {
+		if prev == math.Min(step, float64(key)) {
 			return -1
 		}
-
-	}
-	// If element is found
-	if arr[prev] == key {
-		return prev
 	}
 
-	return -1
+	if array[int(prev)] == key {
+		return int(prev) // Success case (key is found)
+	}
 
+	return -1 // Fail case (key is not found)
 }
 
 func main() {
@@ -156,7 +150,7 @@ func main() {
 
 	fmt.Println("*******************************")
 	fmt.Println("BinarySearch Result:")
-	fmt.Println(BinarySearch(array, 13))
+	fmt.Println(BinarySearch(array, search_value))
 
 	fmt.Println("*******************************")
 	fmt.Println("SentinelSearch Result:")
@@ -172,6 +166,6 @@ func main() {
 
 	fmt.Println("*******************************")
 	fmt.Println("JumpBinarySearch Result:")
-	fmt.Println(JumpBinarySearch(array, search_value))
+	fmt.Println(JumpBinarySearch(array2, 220))
 
 }
