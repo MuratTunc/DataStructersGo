@@ -44,19 +44,16 @@ func BinarySearch(array []int, key int) int {
 func InterpolationSearch(array []int, key int) int {
 
 	min_value, max_value := array[0], array[len(array)-1]
-
 	low_value, high_value := 0, len(array)-1
 
 	for {
 		if key < min_value {
 			return -1 //Fail case (key is not found)
 		}
-
 		if key > max_value {
 			return -1 //Fail case (key is not found)
 		}
-
-		// make a guess of the location
+		// Guess of the location
 		var guess int
 		if high_value == low_value {
 			guess = high_value
@@ -65,8 +62,7 @@ func InterpolationSearch(array []int, key int) int {
 			offset := int(float64(size-1) * (float64(key-min_value) / float64(max_value-min_value)))
 			guess = low_value + offset
 		}
-
-		// maybe we found it?
+		// Maybe we found it?
 		if array[guess] == key {
 			// scan backwards for start of value range
 			for guess > 0 && array[guess-1] == key {
@@ -74,7 +70,6 @@ func InterpolationSearch(array []int, key int) int {
 			}
 			return guess // Success case (key is found)
 		}
-
 		// if we guessed to high, guess lower or vice versa
 		if array[guess] > key {
 			high_value = guess - 1
