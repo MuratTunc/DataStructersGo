@@ -133,6 +133,13 @@ func JumpBinarySearch(array []int, key int) int {
 	return -1 // Fail case (key is not found)
 }
 
+func fibonacciRecursive(n int) int {
+	if n <= 1 {
+		return n
+	}
+	return fibonacciRecursive(n-1) + fibonacciRecursive(n-2)
+}
+
 func main() {
 
 	array := []int{10, 9, 7, 2, 11, 3, 65, 89, 99}
@@ -162,5 +169,9 @@ func main() {
 	fmt.Println("*******************************")
 	fmt.Println("JumpBinarySearch Result:")
 	fmt.Println(JumpBinarySearch(array2, 220))
+
+	fmt.Println("*******************************")
+	fmt.Println("Fibinocci Result:")
+	fmt.Println(fibonacciRecursive(11))
 
 }
