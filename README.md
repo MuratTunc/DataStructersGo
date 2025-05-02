@@ -58,3 +58,7 @@ The complexity of Sentinel Jump Search is O(√N).(Worst Case)
 
 
 ![JumpSearch](/images/JumpSearch.JPG)
+
+
+
+-----------------------------------------------
