@@ -8,7 +8,7 @@ All array elements are checked sequentially, starting from the first element. Th
 
 The complexity of linear search is O(n).
 
-Code in Go
+Code in Go-->
 
 
 
